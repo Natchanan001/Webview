@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        td { border-bottom: 1px solid #ddd; padding: 8px; }
+        button { padding: 16px; width: 100%; font-size: 18px; background-color: #f0f0f0; border: 1px solid #ccc; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>My Cart</h1> <table>
+        <tr><td>Apple - $30</td></tr> <tr><td>Banana - $20</td></tr> <tr><td>Orange - $25</td></tr> <tr><td>Milk - $45</td></tr> <tr><td>Bread - $35</td></tr> </table>
+
+    <div style="background: #eee; padding: 10px; text-align: right;">
+        <h2 id="total">Total: 155</h2> </div>
+
+    <button onclick="sendTotalToFlutter()">Send Total to Flutter</button> <script>
+        function sendTotalToFlutter() {
+            var totalPrice = document.getElementById('total').innerText.split(': ')[1]; // [cite: 298]
+            FlutterChannel.postMessage(totalPrice); // 
+        }
+
+        // ฟังก์ชันรับค่าบวกเพิ่มจาก Flutter ตามหน้า 28-29
+        function updateTotalFromFlutter(msg) { // [cite: 334, 361]
+            document.getElementById('total').innerText = "Total: " + msg; // [cite: 335]
+            return "Message received: " + msg; // [cite: 336]
+        }
+    </script>
+</body>
+</html>

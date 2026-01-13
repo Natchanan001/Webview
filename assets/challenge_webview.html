@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Challenge WebView</title>
+  <style>
+    body { font-family: -apple-system, Arial; padding: 16px; }
+    .card { padding: 16px; border: 1px solid #ddd; border-radius: 12px; }
+    .total { font-size: 22px; font-weight: 800; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>challenge_webview.html</h2>
+    <p>Step 1: show this HTML inside WebView</p>
+    <p class="total">Total: <span id="total">300</span></p>
+    <p id="status"></p>
+  </div>
+
+  <script>
+    function getTotal() {
+      return parseInt(document.getElementById('total').innerText, 10) || 0;
+    }
+
+    // Step 2: send total to FlutterChannel
+    function sendTotalToFlutter() {
+      const total = getTotal();
+      if (window.FlutterChannel && window.FlutterChannel.postMessage) {
+        window.FlutterChannel.postMessage(String(total));
+        document.getElementById('status').innerText =
+          'Sent total to Flutter: ' + total;
+      } else {
+        document.getElementById('status').innerText =
+          'FlutterChannel not found (run inside Flutter WebView)';
+      }
+    }
+
+    // Step 3: receive new total from Flutter
+    function updateTotalFromFlutter(newTotal) {
+      const v = parseInt(newTotal, 10) || 0;
+      document.getElementById('total').innerText = v;
+      document.getElementById('status').innerText =
+        'Updated from Flutter: ' + v;
+    }
+  </script>
+</body>
+</html>

@@ -1,24 +1,18 @@
-name: my_webview
-description: "A new Flutter project."
-publish_to: 'none'
-version: 1.0.0+1
+name: flutter_webview_full_slides
+description: Full WebView workshop code from slides
+publish_to: "none"
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ">=3.3.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
-  webview_flutter: ^4.13.0 # ติดตั้ง Plugin ตามสไลด์หน้า 6 [cite: 83, 85]
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^3.0.0
+  webview_flutter: ^4.10.0
 
 flutter:
   uses-material-design: true
-  assets: # ประกาศไฟล์ Asset ตาม Challenge หน้า 18 [cite: 190, 192]
-    - asset/index.html
-    - asset/challenge_webview.html
+  assets:
+    - assets/index.html
+    - assets/cart.html
+    - assets/challenge_webview.html
